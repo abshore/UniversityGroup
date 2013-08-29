@@ -1,0 +1,33 @@
+{% extends "::base.html.twig" %}
+{% block body %}
+
+</br></br>
+{% if list==null%}
+<p class="text-info">aucun contact en ligne</p>
+{% else %}
+   <table class="table table-condensed">
+   
+   {% for item in list %}
+   <tr><td> <a href="{{ path('delete_msg',{'id':item.id}) }}"><i class="icon-trash"></i></a><td>{{item.username}}</td></td><td>{{item.email}}</td></tr>
+   {% endfor %}
+    </table> 
+	
+
+	
+<ul style="float :right;" class="nav nav-list">
+
+  <li class="nav-header">Contacts en ligne:</li>
+{% for item in list %}
+  <li ><a href="#">{{item.username}}</a></li>
+  {% endfor %} 
+</ul>
+	
+	{%endif%}
+	<form action="{{ path('voir_msg') }}">
+<textarea rows="13" style="margin: 0px 0px 10px; width: 1104px; height: 572px;"></textarea>
+<p style="float : right;">
+<textarea rows="2" ></textarea>
+<input type="submit" class="btn btn-large btn-primary" style="width : 155px; height : 53px" value"message"/>	
+</p>
+</form>
+{% endblock %}

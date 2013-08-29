@@ -1,0 +1,35 @@
+{{classe}}
+<h1>{{year}}</h1>
+<table>
+</table>
+<table border="1">
+    <tr>
+        {% for item in jours %}
+            <td colspan="4">{{item}}</td>
+        {%endfor%}
+        </tr>
+        {% for u in un %}
+        <tr>
+        {% for ite in dates %}
+                {%set cmp=0 %}
+                    {% for s in seances %}
+                        {% if (s.Jour|date('l d/m/Y')==ite) %}
+                        {%set cmp=cmp+1 %}
+                        {%endif%}
+                    {%endfor%} 
+                {%if (cmp!=0) %}
+                {% for s in seances %}
+                {%if (s.matiere==un) %}
+                <td>{{s.matiere}}</td><td>{{s.heureDeb|date('H:i')}}</td><td>{{s.heureFin|date('H:i')}}</td><td>{{s.salle}}</td>
+                {% endif %}
+{%endfor%}                
+                {% else %}
+                <td></td><td></td><td></td><td></td>
+                {% endif %}
+
+            
+                   {%endfor%}       
+
+            </tr>
+        {%endfor%}
+        </table>
